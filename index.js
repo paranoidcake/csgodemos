@@ -1,7 +1,9 @@
 import fs from 'fs'
 import demofile from 'demofile'
 
-fs.readFile("./demofiles/exploit-vs-gtz-bulls-m1-inferno.dem", (err, buffer) => {
+const path = "./demofiles/exploit-vs-gtz-bulls-m1-inferno.dem"
+
+fs.readFile(path, (err, buffer) => {
     const demoFile = new demofile.DemoFile()
 
     let demoFileCollated = {
@@ -39,17 +41,17 @@ fs.readFile("./demofiles/exploit-vs-gtz-bulls-m1-inferno.dem", (err, buffer) => 
         }
 
         console.log("Writing header file")
-        fs.writeFileSync("./parsed_demos/exploit-vs-gtz-bulls-m1-inferno_header.json", JSON.stringify(serialisableCache.header, replacer), {}, (err) => err ? console.error(err) : null)
+        fs.writeFileSync(path.replace(".dem", "_header.json"), JSON.stringify(serialisableCache.header, replacer), {}, (err) => err ? console.error(err) : null)
         console.log("Done")
 
-        console.log("Writing header file")
-        fs.writeFileSync("./parsed_demos/exploit-vs-gtz-bulls-m1-inferno_events.json", JSON.stringify(serialisableCache.events, replacer), {}, (err) => err ? console.error(err) : null)
+        console.log("Writing events file")
+        fs.writeFileSync(path.replace(".dem", "_events.json"), JSON.stringify(serialisableCache.events, replacer), {}, (err) => err ? console.error(err) : null)
         console.log("Done")
 
-        console.log("Writing header file")
-        fs.writeFileSync("./parsed_demos/exploit-vs-gtz-bulls-m1-inferno_playerInfo.json", "", {}, (err) => err ? console.error(err) : null)
+        console.log("Writing playerInfo file")
+        fs.writeFileSync(path.replace(".dem", "_playerInfo.json"), "", {}, (err) => err ? console.error(err) : null)
 
-        const fileStream = fs.createWriteStream("./parsed_demos/exploit-vs-gtz-bulls-m1-inferno_playerInfo.json")
+        const fileStream = fs.createWriteStream(path.replace(".dem", "_playerInfo.json"))
         serialisableCache.playerInfo.forEach(([key, value]) => {
             fileStream.write(
                 JSON.stringify([key, value], replacer), (err) => err ? console.error(err) : null
