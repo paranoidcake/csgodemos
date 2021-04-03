@@ -1,0 +1,20 @@
+{
+  "name": "csgodemos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:paranoidcake/csgodemos.git",
+  "author": "Victor Panayotov <victorpanayotov@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs": "^3.3.0",
+    "demofile": "^2.0.0-beta.4",
+    "fs": "^0.0.1-security"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
